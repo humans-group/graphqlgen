@@ -21,10 +21,7 @@ func main() {
 		MutateHook: JsonOmitempty,
 	}
 
-	err = api.Generate(cfg,
-		api.NoPlugins(),
-		api.AddPlugin(&p),
-	)
+	err = api.Generate(cfg, api.AddPlugin(&p))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(3)

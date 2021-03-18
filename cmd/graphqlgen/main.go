@@ -9,7 +9,8 @@ import (
 	"github.com/99designs/gqlgen/codegen/config"
 	"github.com/99designs/gqlgen/plugin/modelgen"
 	"github.com/humans-group/graphqlgen/plugin/jsonomitempty"
-	"github.com/humans-group/graphqlgen/plugin/timeout"
+	"github.com/humans-group/graphqlgen/plugin/resolver/decorator"
+	"github.com/humans-group/graphqlgen/plugin/resolver/timeout"
 )
 
 func main() {
@@ -21,7 +22,8 @@ func main() {
 		os.Exit(2)
 	}
 
-	err = api.Generate(cfg, plugins()...)
+	err = api.Generate(cfg,
+		plugins()...)
 	if err != nil {
 		_, _ = fmt.Fprintf(os.Stderr, "generate: %v", err)
 		os.Exit(3)
@@ -45,6 +47,7 @@ func plugins() []api.Option {
 				MutateHook: jsonomitempty.MutateHook,
 			},
 		),
+		api.AddPlugin(&decorator.Plugin{}),
 	)
 
 	if *timeoutsPluginEnabled {

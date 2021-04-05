@@ -1,4 +1,4 @@
-module github.com/humans-net/graphqlgen
+module github.com/humans-group/graphqlgen
 
 go 1.14
 

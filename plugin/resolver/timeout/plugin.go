@@ -44,6 +44,7 @@ func (p *Plugin) GenerateCode(cfg *codegen.Data) error {
 	}
 
 	return templates.Render(templates.Options{
+		Template:        tpl(),
 		PackageName:     cfg.Config.Exec.Package,
 		Filename:        filepath.Dir(cfg.Config.Exec.Filename) + "/" + p.outFile,
 		Packages:        cfg.Config.Packages,

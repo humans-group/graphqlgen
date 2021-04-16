@@ -1,3 +1,8 @@
+package timeout
+
+// TODO: switch to go embed when migrate to go1.16
+var (
+	wrappersTpl = `
 {{ reserveImport "context"  }}
 {{ reserveImport "time"  }}
 
@@ -37,4 +42,25 @@
 type TimeoutsConfig interface{
     GetTimeout(object, field string) (time.Duration, bool)
 }
+	`
+	yamlConfigExampleTpl = `
+// yaml configuration sample
+//
+/*
+   Objects:
+   {{- range $w := .Wrappers }}
+	 - Name: {{$w.ObjectName | quote}}
+	   Fields:
+	   {{- range $r := $w.Resolvers }}
+		 - Name: {{ $r.Name | quote }}
+		   Timeout: 1s
+	   {{- end }}
+   {{ end }}
+*/
+	`
+)
 
+func tpl() string {
+	return wrappersTpl +
+		yamlConfigExampleTpl
+}

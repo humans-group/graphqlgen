@@ -48,7 +48,6 @@ func (p *Plugin) GenerateCode(cfg *codegen.Data) error {
 		PackageName:     cfg.Config.Exec.Package,
 		Filename:        filepath.Dir(cfg.Config.Exec.Filename) + "/" + p.outFile,
 		Packages:        cfg.Config.Packages,
-		RegionTags:      true,
 		GeneratedHeader: true,
 		Data:            data{Wrappers: ww},
 	})

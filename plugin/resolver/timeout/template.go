@@ -47,15 +47,15 @@ type TimeoutsConfig interface{
 // yaml configuration sample
 //
 /*
-   Objects:
-   {{- range $w := .Wrappers }}
-	 - Name: {{$w.ObjectName | quote}}
-	   Fields:
-	   {{- range $r := $w.Resolvers }}
-		 - Name: {{ $r.Name | quote }}
-		   Timeout: 1s
-	   {{- end }}
-   {{ end }}
+Objects:
+{{- range $w := .Wrappers }}
+  - Name: {{$w.ObjectName | quote}}
+    Fields:
+    {{- range $r := $w.Resolvers }}
+      - Name: {{ $r.Name | quote }}
+        Timeout: 1s
+    {{- end }}
+{{ end }}
 */
 	`
 )

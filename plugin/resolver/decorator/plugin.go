@@ -24,10 +24,11 @@ func (p *Plugin) GenerateCode(cfg *codegen.Data) error {
 			FuncType:        fmt.Sprintf("%sDecoratorFunc", resolverName),
 		})
 	}
+
 	return templates.Render(templates.Options{
+		Template:        tpl,
 		PackageName:     cfg.Config.Exec.Package,
 		Filename:        filepath.Dir(cfg.Config.Exec.Filename) + "/resolver_decorators.go",
-		RegionTags:      true,
 		GeneratedHeader: true,
 		Data:            data{Decorators: dd},
 		Packages:        cfg.Config.Packages,

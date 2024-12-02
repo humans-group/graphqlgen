@@ -1,3 +1,3 @@
 # graphqlgen
 
-gqlgen with json omitempty plugin
+gqlgen with timeouts wrapper plugin which sets context deadline in resolvers

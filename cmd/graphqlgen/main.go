@@ -7,9 +7,6 @@ import (
 
 	"github.com/99designs/gqlgen/api"
 	"github.com/99designs/gqlgen/codegen/config"
-	"github.com/99designs/gqlgen/plugin/modelgen"
-	"github.com/humans-group/graphqlgen/plugin/jsonomitempty"
-	"github.com/humans-group/graphqlgen/plugin/resolver/decorator"
 	"github.com/humans-group/graphqlgen/plugin/resolver/timeout"
 )
 
@@ -41,14 +38,6 @@ func loadConfig() (*config.Config, error) {
 
 func plugins() []api.Option {
 	oo := make([]api.Option, 0)
-	oo = append(oo,
-		api.AddPlugin(
-			&modelgen.Plugin{
-				MutateHook: jsonomitempty.MutateHook,
-			},
-		),
-		api.AddPlugin(&decorator.Plugin{}),
-	)
 
 	if *timeoutsPluginEnabled {
 		outFile := *timeoutsPluginOutput

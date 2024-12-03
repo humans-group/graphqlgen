@@ -87,16 +87,5 @@ func (r *FieldResolver) Invocation() string {
 }
 
 func (r *FieldResolver) ResolverImplementation() string {
-	out := "(ctx context.Context"
-
-	if !r.Object.Root {
-		out += fmt.Sprintf(", obj %s", templates.CurrentImports.LookupType(r.Object.Reference()))
-	}
-
-	for _, arg := range r.Args {
-		out += fmt.Sprintf(", %s %s", arg.VarName, templates.CurrentImports.LookupType(arg.TypeReference.GO))
-	}
-
-	out += fmt.Sprintf(") (%s, error)", templates.CurrentImports.LookupType(r.TypeReference.GO))
-	return out
+	return r.ShortResolverDeclaration()
 }
